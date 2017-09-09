@@ -9,7 +9,7 @@ Vue.use(VueRouter)
 
 export default new VueRouter({
     routes: [{
-      path: '/',
+      path: '/home',
       // name: 'home',
       component: Home
     },
@@ -22,6 +22,11 @@ export default new VueRouter({
       path: '/food',
       // name: 'food',
       component: Food
+    },
+    // 重定向
+    {
+      path: '/',
+      redirect: '/home'
     }
   ]
 })

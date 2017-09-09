@@ -1,4 +1,4 @@
-const TODOLIST = 'todo-List'
+const TODOLIST = 'todoListXX'
 
 export default {
   fetch: (item) => {
