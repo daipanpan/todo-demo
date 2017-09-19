@@ -49,7 +49,7 @@ a:hover, .router-link-active {
   border-bottom: 2px solid #00b0f0;
 }
 button {
-  padding: 7px 0;
+  /*padding: 7px 0;*/
   outline: none;
   text-align: center;
   border-radius: 4px;

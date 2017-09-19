@@ -7,6 +7,7 @@ export default {
     state.count++;
     obj.items.id = state.count;
     state.event.unshift(obj.items);
+    // 将数据本地存储！
     func.local.save(state);
   },
 
@@ -34,5 +35,16 @@ export default {
       }
     }
     func.local.save(state);
-  }
+  },
+
+  [mutationType.DELEVENT] (state, id) {
+    for (let i=0; i < state.event.length; i++) {
+      if (state.event[i].id == id) {
+        state.event.splice(i, 1);
+        state.count--;
+        break;
+      }
+    }
+    func.local.save(state);
+  },
 }

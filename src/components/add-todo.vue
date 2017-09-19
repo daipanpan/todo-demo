@@ -8,15 +8,17 @@
       <div class="todo-wrapper">待办事情</div>
       <ol class="content">
         <li v-for="(item, index) in getToDo">
-          <span>{{item.content}}</span>
+          <div>{{item.content}}</div>
           <input type="checkbox" :key="item.id" @click="moveToDone(item.id)">
+          <button class="delete-btn" @click="deleteItem(item.id)">删除</button>
         </li>
       </ol>
       <div class="todo-wrapper">已完成事情</div>
         <ol class="content">
         <li v-for="(item, index) in getDone">
-          <span>{{item.content}}</span>
+          <div>{{item.content}}</div>
           <input type="checkbox" :key="item.id" @click="moveToDo(item.id)">
+          <button class="delete-btn" @click="deleteItem(item.id)">删除</button>
          </li>
       </ol>
   </div>
@@ -62,8 +64,9 @@ export default {
         alert('请输入待办事情！');
       }
     },
-    deleteItem (index) {
-      this.lists.splice(index, 1);
+    deleteItem (id) {
+      // this.lists.splice(index, 1);
+      this.$store.dispatch('delevent', id);
     },
     moveToDone (id) {
       this.$store.dispatch('eventdone', id);
@@ -86,17 +89,18 @@ ul{
   list-style-type: none;
   padding: 0;
 }
+
 ol {
-    list-style-type: none;
-    padding: 0;
-    margin: 0px;
+  padding: 0;
+  margin: 0px;
+  list-style-type: none;
 }
 
 li {
-    padding: 0 20px;
+    padding: 0 60px 0px 35px;
     text-align: left;
     position: relative;
-    height: 40px;
+    min-height: 40px;
     line-height: 40px;
     border-left: 1px solid #eee;
     border-right: 1px solid #eee;
@@ -105,8 +109,8 @@ li {
 }
 li input {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 13px;
+    left: 10px;
 }
 a {
   color: #42b983;
@@ -146,7 +150,8 @@ a {
   background: #08aae5;
   color: #fff;
 }
-.content span {
+.content div {
+  word-break: break-word;
   cursor: pointer;
 }
 .doneItem {
@@ -160,6 +165,16 @@ a {
   border-bottom: 1px solid #eee;
   text-align: left;
   background: #00b0f0;
+  color: #fff;
+}
+.delete-btn {
+  width: 50px;
+  height: 30px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border: 1px solid #fff;
+  background: rgba(255, 0, 0, 0.56);
   color: #fff;
 }
 
